@@ -1,0 +1,57 @@
+<html> 
+<head> 
+<title>Form Validation</title> 
+</head> 
+<body> 
+<h2>Registration Form</h2> 
+<form onsubmit="return validateForm()"> 
+Name:<br> 
+<input type="text" id="name"><br><br> 
+Email:<br> 
+<input type="text" id="email"><br><br> 
+Password:<br> 
+<input type="password" id="password"><br><br> 
+Phone Number:<br> 
+<input type="text" id="phone"><br><br> 
+Date of Birth:<br> 
+<input type="date" id="dob"><br><br> 
+<input type="submit" value="Submit"> 
+</form> 
+<p id="error" style="color:red;"></p> 
+<script> 
+function validateForm() { 
+var name = document.getElementById("name").value; 
+var email = document.getElementById("email").value; 
+var password = document.getElementById("password").value; 
+var phone = document.getElementById("phone").value; 
+var error = document.getElementById("error"); 
+var namePattern = /^[A-Za-z]{3,}$/; 
+if (!namePattern.test(name)) { 
+error.innerHTML = "Name must contain at least 3 alphabets only."; 
+return false; 
+} 
+var emailPattern = /^[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+$/; 
+if (!emailPattern.test(email)) { 
+error.innerHTML = "Enter a valid email (example@domain.com)."; 
+return false; 
+} 
+var passwordPattern = 
+/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\W]).{8,}$/; 
+if (!passwordPattern.test(password)) { 
+error.innerHTML = 
+"Password must be at least 8 characters with uppercase, lowercase, number, and 
+special character."; 
+return false; 
+} 
+// Phone number validation (10 digits) 
+var phonePattern = /^[0-9]{10}$/; 
+if (!phonePattern.test(phone)) { 
+error.innerHTML = "Phone number must be exactly 10 digits."; 
+return false; 
+} 
+error.innerHTML = "Form submitted successfully!"; 
+return true; 
+} 
+</script> 
+</body> 
+</html>
